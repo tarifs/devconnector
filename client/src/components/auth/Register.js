@@ -21,7 +21,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
   const onSubmit = async e => {
     e.preventDefault();
     if (password !== password2) {
-      setAlert('Password do not match', 'danger');
+      setAlert('Passwords do not match', 'danger');
     } else {
       register({ name, email, password });
     }
@@ -35,7 +35,7 @@ const Register = ({ setAlert, register, isAuthenticated }) => {
     <Fragment>
       <h1 className='large text-primary'>Sign Up</h1>
       <p className='lead'>
-        <i className='fas fa-user'></i> Create Your Account
+        <i className='fas fa-user' /> Create Your Account
       </p>
       <form className='form' onSubmit={e => onSubmit(e)}>
         <div className='form-group'>

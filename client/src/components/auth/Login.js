@@ -5,7 +5,7 @@ import PropTypes from 'prop-types';
 import { login } from '../../actions/auth';
 
 const Login = ({ login, isAuthenticated }) => {
-  const [formData, setFromData] = useState({
+  const [formData, setFormData] = useState({
     email: '',
     password: ''
   });
@@ -13,14 +13,13 @@ const Login = ({ login, isAuthenticated }) => {
   const { email, password } = formData;
 
   const onChange = e =>
-    setFromData({ ...formData, [e.target.name]: e.target.value });
+    setFormData({ ...formData, [e.target.name]: e.target.value });
 
   const onSubmit = async e => {
     e.preventDefault();
     login(email, password);
   };
 
-  //Redirect if logged in
   if (isAuthenticated) {
     return <Redirect to='/dashboard' />;
   }
@@ -29,7 +28,7 @@ const Login = ({ login, isAuthenticated }) => {
     <Fragment>
       <h1 className='large text-primary'>Sign In</h1>
       <p className='lead'>
-        <i className='fas fa-user'></i> Sign into Your Account
+        <i className='fas fa-user' /> Sign Into Your Account
       </p>
       <form className='form' onSubmit={e => onSubmit(e)}>
         <div className='form-group'>
@@ -39,6 +38,7 @@ const Login = ({ login, isAuthenticated }) => {
             name='email'
             value={email}
             onChange={e => onChange(e)}
+            required
           />
         </div>
         <div className='form-group'>
@@ -48,6 +48,7 @@ const Login = ({ login, isAuthenticated }) => {
             name='password'
             value={password}
             onChange={e => onChange(e)}
+            minLength='6'
           />
         </div>
         <input type='submit' className='btn btn-primary' value='Login' />
